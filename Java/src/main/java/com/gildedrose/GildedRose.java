@@ -23,66 +23,47 @@ class GildedRose {
             return;
         }
 
+        item.sellIn = item.sellIn - 1;
+
         if (isAgedBrie) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-
-            }
-
-            item.sellIn = item.sellIn - 1;
-
+            increaseQuality(item);
             if (item.sellIn < 0) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
+                increaseQuality(item);
             }
         } else if (isBackstagePass) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-
-                if (item.sellIn < 11) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-
-                if (item.sellIn < 6) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-            }
-
-            item.sellIn = item.sellIn - 1;
-
             if (item.sellIn < 0) {
                 item.quality = 0;
+            } else {
+                if (item.sellIn < 5) {
+                    increaseQuality(item);
+                }
+                if (item.sellIn < 10) {
+                    increaseQuality(item);
+                }
+                increaseQuality(item);
             }
-
         } else if (isConjured) {
-            if (item.quality > 1) {
-                item.quality = item.quality - 2;
-            }
-
-            item.sellIn = item.sellIn - 1;
-
-            if (item.sellIn < 0) {
-                if (item.quality > 1) {
-                    item.quality = item.quality - 2;
-                }
-            }
+            degradeNormal(item, 2);
         } else {
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
+            degradeNormal(item, 1);
+        }
+    }
+    private void degradeNormal(Item item, int multiplier) {
+        int times = item.sellIn < 0 ? multiplier * 2 : multiplier;
+        for (int i = 0; i < times; i++) {
+            decreaseQuality(item);
+        }
+    }
 
-            item.sellIn = item.sellIn - 1;
+    private void increaseQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
 
-            if (item.sellIn < 0) {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
-            }
+    private void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 }
