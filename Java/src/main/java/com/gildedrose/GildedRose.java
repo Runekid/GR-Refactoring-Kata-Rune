@@ -17,6 +17,7 @@ class GildedRose {
         boolean isAgedBrie = item.name.equals("Aged Brie");
         boolean isBackstagePass = item.name.equals("Backstage passes to a TAFKAL80ETC concert");
         boolean isSulfuras = item.name.equals("Sulfuras, Hand of Ragnaros");
+        boolean isConjured = item.name.equals("Conjured Mana Cake");
 
         if (isSulfuras) {
             return;
@@ -58,6 +59,18 @@ class GildedRose {
                 item.quality = 0;
             }
 
+        } else if (isConjured) {
+            if (item.quality > 1) {
+                item.quality = item.quality - 2;
+            }
+
+            item.sellIn = item.sellIn - 1;
+
+            if (item.sellIn < 0) {
+                if (item.quality > 1) {
+                    item.quality = item.quality - 2;
+                }
+            }
         } else {
             if (item.quality > 0) {
                 item.quality = item.quality - 1;
@@ -72,5 +85,4 @@ class GildedRose {
             }
         }
     }
-
 }
