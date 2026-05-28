@@ -15,7 +15,7 @@ public class AgedBrieUpdaterTest {
     }
 
     @Test
-    void increasesTwiceAsFastAfterSellDate() {
+    void increasesInQualityTwiceAsFastAfterSellDate() {
         Item item = new Item("Aged Brie", 0, 10);
         updater.update(item);
         assertEquals(12, item.quality);

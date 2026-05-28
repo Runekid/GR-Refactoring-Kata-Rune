@@ -8,14 +8,14 @@ public class ConjuredItemUpdaterTest {
     private final ItemUpdater updater = new ConjuredItemUpdater();
 
     @Test
-    void degradesTwiceAsFastAsNormal() {
+    void decreasesInQualityTwiceAsFastAsNormal() {
         Item item = new Item("Conjured Mana Cake", 3, 6);
         updater.update(item);
         assertEquals(4, item.quality);
     }
 
     @Test
-    void degradesFourTimesAsFastAfterSellDate() {
+    void decreasesInQualityFourTimesAsFastAfterSellDate() {
         Item item = new Item("Conjured Mana Cake", 0, 6);
         updater.update(item);
         assertEquals(2, item.quality);

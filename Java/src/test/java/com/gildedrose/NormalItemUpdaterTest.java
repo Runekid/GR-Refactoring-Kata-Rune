@@ -8,7 +8,7 @@ public class NormalItemUpdaterTest {
     private final ItemUpdater updater = new NormalItemUpdater();
 
     @Test
-    void decreasesQualityAndSellInByOne() {
+    void decreasesInQualityAndSellInByOne() {
         Item item = new Item("+5 Dexterity Vest", 10, 20);
         updater.update(item);
         assertEquals(9, item.sellIn);
@@ -16,7 +16,7 @@ public class NormalItemUpdaterTest {
     }
 
     @Test
-    void degradesTwiceAsFastAfterSellDate() {
+    void decreasesInQualityTwiceAsFastAfterSellDate() {
         Item item = new Item("+5 Dexterity Vest", 0, 10);
         updater.update(item);
         assertEquals(8, item.quality);

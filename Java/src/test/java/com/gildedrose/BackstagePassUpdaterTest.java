@@ -23,7 +23,7 @@ public class BackstagePassUpdaterTest {
 
     @ParameterizedTest(name = "sellIn={0}, quality={1} → quality={2}")
     @MethodSource("qualityIncreaseByDaysRemaining")
-    void increasesQualityByRuleAsDateApproaches(int sellIn, int quality, int expectedQuality) {
+    void increasesInQualityByRuleAsDateApproaches(int sellIn, int quality, int expectedQuality) {
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
         updater.update(item);
         assertEquals(expectedQuality, item.quality);
